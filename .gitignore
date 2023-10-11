@@ -131,3 +131,7 @@ dist
 
 # environment variable files
 *.env
+
+
+# build folder
+build/

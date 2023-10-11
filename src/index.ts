@@ -1,15 +1,18 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
 const app = express();
 
 // MIDDLEWARES
-app.get('/', (req, res) => res.json({ message: 'Hello world' }));
+app.get('/', (req: Request, res: Response) =>
+  res.json({ message: 'Hi there' })
+);
 
 async function initServer() {
   const { MONGO_DB_URL, PORT } = process.env;
 
+  if (!MONGO_DB_URL) throw new Error('Database connection url missing');
   await mongoose.connect(MONGO_DB_URL);
 
   console.log('Successfully connected to database');
