@@ -1,13 +1,12 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import { userRouter } from './routing/user-routes';
 
 const app = express();
 
 // MIDDLEWARES
-app.get('/', (req: Request, res: Response) =>
-  res.json({ message: 'Hi there' })
-);
+app.use('/users', userRouter);
 
 async function initServer() {
   const { MONGO_DB_URL, PORT } = process.env;
